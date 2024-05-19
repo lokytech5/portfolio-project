@@ -35,16 +35,27 @@ export default function Home() {
 
         {/* Hero Section */}
         <div className="hero min-h-screen bg-base-200 pt-20">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" className="max-w-sm rounded-lg shadow-2xl" />
-    <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
-      </div> 
+          <div className="hero-content flex-col md:flex-row-reverse lg:flex-row-reverse items-center">
+            <div className="lg:w-1/2">
+              <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Hero Image" width={500} height={500} className="rounded-lg shadow-2xl" />
+            </div>
+            <div className="lg:w-1/2 text-center lg:text-left mt-10 lg:mt-0">
+              <h1 className="text-6xl font-bold mb-4">
+                Hi, <span className="block">I am <span className="text-purple-600 tracking-wide animate-pulse">Lokosman</span></span>
+              </h1>
+              <p className="text-lg mb-6">Backend Engineer and Cloud Administrator with a passion for developing scalable and efficient backend solutions.</p>
+              <div className="flex justify-center lg:justify-start space-x-4">
+                <Link href="/contact">
+                  <button className="btn btn-primary text-lg py-3 px-6 hover:scale-105 transition-transform">Get in touch</button>
+                </Link>
+                <Link href="/resume">
+                  <button className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-gray-100 transition-transform">Download CV</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="drawer-side z-50">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-center items-center space-y-4 no-underline rounded-box">
