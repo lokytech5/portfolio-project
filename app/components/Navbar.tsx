@@ -1,4 +1,5 @@
 import React from 'react'
+import { smoothScrollTo } from '../utils/smoothScroll'
 
 const Navbar = () => {
   return (
@@ -14,10 +15,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li><a>Home</a></li>
-            <li><a>Resume</a></li>
-            <li><a>About</a></li>
-            <li><a>Project</a></li>
+          <li><a className="cursor-pointer" onClick={() => smoothScrollTo('home')}>Home</a></li>
+          <li><a className="cursor-pointer" onClick={() => smoothScrollTo('resume')}>Resume</a></li>
+          <li><a className="cursor-pointer" onClick={() => smoothScrollTo('about')}>About</a></li>
+          <li><a className="cursor-pointer" onClick={() => smoothScrollTo('projects')}>Projects</a></li>
           </ul>
         </div>
         <div className="navbar-end">

@@ -12,12 +12,20 @@ const HomePage = () => {
     <div className="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        <Navbar />
-        <Hero />
-        <Resume />
-        <About />
-        <Projects />
-        <Footer />
+                    <Navbar />
+                    <section id="home">
+                        <Hero />
+                    </section>
+                    <section id="resume">
+                        <Resume />
+                    </section>
+                    <section id="about">
+                        <About />
+                    </section>
+                    <section id="projects">
+                        <Projects />
+                    </section>
+                    <Footer />
       </div>
       <div className="drawer-side z-50">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>

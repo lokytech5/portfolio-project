@@ -12,12 +12,6 @@ const Resume = () => {
     const [activeTab, setActiveTab] = useState('education');
 
     return (
-      <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-      className="bg-base-200 p-10 rounded-lg shadow-lg pt-20"
-    >
       <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
         <h1 className="text-5xl font-bold mb-10">Resume</h1>
         <div className="flex flex-col lg:flex-row">
@@ -148,7 +142,6 @@ const Resume = () => {
               </div>
             </div>
           </div>
-          </motion.div>
     );
 }
 
