@@ -6,6 +6,12 @@ import pic2 from '../../public/images/simple.jpg';
 
 const Hero = () => {
     return (
+      <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 2 }}
+      className="hero min-h-screen bg-base-200 pt-20"
+    >
         <div className="hero min-h-screen bg-base-200 pt-20">
           <div className="hero-content flex-col md:flex-row-reverse lg:flex-row-reverse items-center">
             <motion.div
@@ -75,6 +81,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        </motion.div>
   )
 }
 

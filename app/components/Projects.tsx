@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import { FaGithub } from "react-icons/fa";
+import { motion } from 'framer-motion';
 
 
 
@@ -24,7 +25,13 @@ const projects = [
 ];
 
 const Projects = () => {
-    return (
+  return (
+      <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="bg-base-200 p-10 rounded-lg shadow-lg"
+        >
         <div className="bg-base-200 p-10 rounded-lg shadow-lg">
           <h2 className="text-5xl font-bold mb-10">Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -54,6 +61,7 @@ const Projects = () => {
             ))}
           </div>
         </div>
+        </motion.div>
   )
 }
 
