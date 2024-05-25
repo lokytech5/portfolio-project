@@ -6,12 +6,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
     return (
-      <motion.div
-      initial={{ opacity: 0, x: 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      className="bg-base-200 p-10 rounded-lg shadow-lg pt-20"
-    >
+      
         <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
           <h1 className="text-5xl font-bold mb-10 text-left">About Me</h1>
           <div className="hero-content flex-col lg:flex-row items-center">
@@ -59,7 +54,6 @@ const About = () => {
             </div>
           </div>
         </div>
-        </motion.div>
   )
 }
 
