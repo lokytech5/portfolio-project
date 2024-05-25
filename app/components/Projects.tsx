@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image';
-import { Github } from 'lucide-react';
+import { FaGithub } from "react-icons/fa";
+
+
 
 const projects = [
   {
@@ -29,9 +31,9 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div key={index} className="card bg-base-100 shadow-xl">
                 <figure className="relative">
-                  <Image src={project.image} alt={project.title} width={300} height={200} className="object-cover mt-14 rounded-lg" />
+                  <Image src={project.image} alt={project.title} width={300} height={200} className="object-cover mt-10 rounded-lg" />
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 right-2 bg-black p-2 rounded-full shadow-lg">
-                    <Github />
+                  <FaGithub className=' size-4'/>
                   </a>
                 </figure>
                 <div className="card-body">
