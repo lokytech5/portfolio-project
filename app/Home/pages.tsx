@@ -8,6 +8,7 @@ import Footer from '../components/Footer'
 import { smoothScrollTo } from '../utils/smoothScroll'
 
 const HomePage = () => {
+
   const closeDrawer = () => {
     const drawerToggle = document.getElementById('my-drawer-3') as HTMLInputElement;
     if (drawerToggle) {
