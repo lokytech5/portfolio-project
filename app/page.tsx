@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import pic1 from '../public/images/clear.jpg'
 import pic2 from '../public/images/simple.jpg'
 import { useState } from 'react'
+import { Github } from 'lucide-react';
 
 interface CustomCSSProperties extends CSSProperties {
   '--value'?: string;
@@ -17,7 +18,7 @@ export default function Home() {
   const [ activeTab, setActiveTab] = useState('education')
   const projects = [
     {
-      title: 'Project One',
+      title: 'Tuti Hairs',
       description: 'This is a brief description of Project One. It uses technologies such as React, Node.js, and MongoDB.',
       image: pic1,
       githubLink: 'https://github.com/yourusername/project-one',
@@ -278,11 +279,11 @@ export default function Home() {
 
         {/* About Me Section */}
 
-        {/* About Me Section */}
-        <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
-        <h1 className="text-5xl font-bold mb-10">About Me</h1>
+       {/* About Me Section */}
+       <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
+          <h1 className="text-5xl font-bold mb-10 text-left">About Me</h1>
           <div className="hero-content flex-col lg:flex-row items-center">
-            <div className="flex-shrink-0 lg:mr-10">
+            <div className="hidden lg:block flex-shrink-0 lg:mr-10">
               <Image
                 src={pic1}
                 alt="About Me Image"
@@ -292,7 +293,6 @@ export default function Home() {
               />
             </div>
             <div>
-              
               <p className="py-6">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
                 <div>
@@ -336,11 +336,9 @@ export default function Home() {
               {projects.map((project, index) => (
                 <div key={index} className="card bg-base-100 shadow-xl">
                   <figure className="relative">
-                    <Image src={project.image} alt={project.title} layout="responsive" width={400} height={250} className="object-cover"/>
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 20.5v-2.5h3v2.5c0 .828-.448 1.5-1 1.5H10c-.552 0-1-.672-1-1.5v-2.5h3v2.5M16 3c2.209 0 4 1.791 4 4 0 2.645-2.022 5.255-4.57 7.854-1.031 1.105-2.162 2.146-3.303 3.197l-1.127 1.058A.75.75 0 017 18.75v-2.25a7.504 7.504 0 01-3-2.25c-2.533-2.843-4-5.454-4-8a4 4 0 118 0 4 4 0 018 0z" />
-                      </svg>
+                    <Image src={project.image} alt={project.title} width={300} height={200} className="object-cover mt-14 rounded-lg"/>
+                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 right-2 bg-black p-2 rounded-full shadow-lg">
+                    <Github />
                     </a>
                   </figure>
                   <div className="card-body">
@@ -351,7 +349,7 @@ export default function Home() {
                         <span key={techIndex} className="badge badge-outline">{tech}</span>
                       ))}
                     </div>
-                    <div className="card-actions justify-end mt-4">
+                    <div className="card-actions justify-start mt-4">
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
                         <button className="btn btn-primary">View Project</button>
                       </a>
