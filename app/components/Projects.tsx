@@ -33,7 +33,7 @@ const Projects = () => {
               <div key={index} className="card bg-base-100 shadow-xl">
                 <figure className="relative">
                   <Image src={project.image} alt={project.title} width={300} height={200} className="object-cover mt-10 rounded-lg" />
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 right-2 bg-black p-2 rounded-full shadow-lg">
+                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 left-2 bg-black p-2 rounded-full shadow-lg">
                   <FaGithub className=' size-4'/>
                   </a>
                 </figure>
