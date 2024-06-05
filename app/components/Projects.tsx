@@ -1,38 +1,28 @@
+"use client"
 import React from 'react'
 import Image from 'next/image';
 import { FaGithub } from "react-icons/fa";
+import { useProjects } from '../hooks/useProjects';
+import LoadingSpinner from './LoadingSpinner';
+import ErrorAlert from './ErrorAlert';
 
 
-
-const projects = [
-  {
-    title: 'Tuti Hairs',
-    description: 'This is a brief description of Project One. It uses technologies such as React, Node.js, and MongoDB.',
-    image: require('../../public/images/clear.jpg'),
-    githubLink: 'https://github.com/yourusername/project-one',
-    liveLink: 'https://project-one.example.com',
-    techStack: ['React', 'Node.js', 'MongoDB']
-  },
-  {
-    title: 'Project Two',
-    description: 'This is a brief description of Project Two. It uses technologies such as Next.js, TypeScript, and Tailwind CSS.',
-    image: require('../../public/images/simple.jpg'),
-    githubLink: 'https://github.com/yourusername/project-two',
-    liveLink: 'https://project-two.example.com',
-    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS']
-  }
-];
 
 const Projects = () => {
+  const { data: projects, error, isLoading } = useProjects();
+
+  if(isLoading) return <LoadingSpinner/>
+  if(error) return <ErrorAlert />
+  
   return (
       
         <div className="bg-base-200 p-10 rounded-lg shadow-lg">
           <h2 className="text-5xl font-bold mb-10">Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
+            {projects?.map((project, index) => (
               <div key={index} className="card bg-base-100 shadow-xl">
                 <figure className="relative">
-                  <Image src={project.image} alt={project.title} width={300} height={200} className="object-cover mt-10 rounded-lg" />
+                  <Image src={project.image.url} alt={project.title} width={300} height={200} className="object-cover mt-10 rounded-lg" />
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="absolute top-2 left-2 bg-black p-2 rounded-full shadow-lg">
                   <FaGithub className=' size-4'/>
                   </a>
