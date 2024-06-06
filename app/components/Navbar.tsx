@@ -1,5 +1,6 @@
 import React from 'react'
 import { smoothScrollTo } from '../utils/smoothScroll'
+import ContactFormModal from './ContactFormModal'
 
 const Navbar = () => {
   return (
@@ -22,7 +23,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Contact</a>
+          <ContactFormModal />
         </div>
       </div>
     </div>
