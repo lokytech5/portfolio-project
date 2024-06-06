@@ -9,7 +9,6 @@ import imageLoader from '../utils/imageLoader';
 
 const Projects = () => {
   const { data: projects, error, isLoading } = useProjects();
-  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
 
   if(isLoading) return <LoadingSpinner/>
   if(error) return <ErrorAlert />
@@ -18,9 +17,9 @@ const Projects = () => {
       
     <div className="bg-base-200 p-10 rounded-lg shadow-lg">
     <h2 className="text-5xl font-bold mb-10">Projects</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {projects?.map((project, index) => (
-        <div key={index} className="card bg-base-100 shadow-xl">
+        <div key={index} className="card bg-base-100 shadow-xl lg:w-80">
           <figure className="relative">
             {project.attributes.image && project.attributes.image.data && project.attributes.image.data.attributes.formats && project.attributes.image.data.attributes.formats.medium ? (
               <Image
@@ -29,24 +28,26 @@ const Projects = () => {
                 alt={project.attributes.title}
                 width={300}
                 height={200}
-                className="object-cover mt-10 rounded-lg"
+                className="object-cover mt-4 rounded-lg"
               />
             ) : (
               <div style={{ width: 300, height: 200, backgroundColor: '#ccc' }} className="object-cover mt-10 rounded-lg">
                 <p>No image available</p>
               </div>
             )}
-            <a
-              href={project.attributes.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute top-2 left-2 bg-black p-2 rounded-full shadow-lg"
-            >
-              <FaGithub className='size-4' />
-            </a>
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{project.attributes.title}</h2>
+            <div className="flex justify-between items-center">
+              <h2 className="card-title">{project.attributes.title}</h2>
+              <a
+                href={project.attributes.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" bg-neutral p-2 rounded-full shadow-lg"
+              >
+                <FaGithub className="text-white" />
+              </a>
+            </div>
             <p>{project.attributes.description}</p>
             <div className="flex flex-wrap gap-2">
               {project.attributes.techStack && project.attributes.techStack.length > 0 ? (
