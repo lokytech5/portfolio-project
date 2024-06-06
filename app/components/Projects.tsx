@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import LoadingSpinner from './LoadingSpinner';
 import ErrorAlert from './ErrorAlert';
 import useProjects from '../hooks/useProjects';
+import imageLoader from '../utils/imageLoader';
 
 const Projects = () => {
   const { data: projects, error, isLoading } = useProjects();
@@ -23,6 +24,7 @@ const Projects = () => {
           <figure className="relative">
             {project.attributes.image && project.attributes.image.data && project.attributes.image.data.attributes.formats && project.attributes.image.data.attributes.formats.medium ? (
               <Image
+                loader={imageLoader}
                 src={project.attributes.image.data.attributes.formats.medium.url}
                 alt={project.attributes.title}
                 width={300}
