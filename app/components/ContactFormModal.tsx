@@ -1,20 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useContactMessages from '../hooks/useContactMessages';
+import LoadingSpinner from './LoadingSpinner';
+import ErrorAlert from './ErrorAlert';
 
 const ContactFormModal = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const { createMessage, isLoading, isError, isSuccess } = useContactMessages();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
   const openModal = () => {
-    const modal = document.getElementById('contact_modal') as HTMLDialogElement;
-    if (modal) {
-      modal.showModal();
-    }
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    createMessage(
+      { email, message },
+      {
+        onSuccess: () => {
+          setEmail('');
+          setMessage('');
+          setShowToast(true);
+          closeModal();
+          setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+        },
+      }
+    );
   };
 
   return (
     <>
       <button className="btn" onClick={openModal}>Contact</button>
-      <dialog id="contact_modal" className="modal">
+      <dialog id="contact_modal" className={`modal ${isModalOpen ? 'modal-open' : ''}`}>
         <div className="modal-box">
-          <form method="dialog" className="relative">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          <form onSubmit={handleSubmit} className="relative">
+            <button type="button" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</button>
             <h3 className="font-bold text-lg">Contact Us</h3>
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mt-4">
               <div className="card-body">
@@ -22,22 +48,45 @@ const ContactFormModal = () => {
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
-                  <input type="email" placeholder="email" className="input input-bordered" required />
+                  <input
+                    type="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Message</span>
                   </label>
-                  <textarea placeholder="Your message" className="textarea textarea-bordered" rows={5} required></textarea>
+                  <textarea
+                    placeholder="Your message"
+                    className="textarea textarea-bordered"
+                    rows={5}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  ></textarea>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Send</button>
+                  <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                    {isLoading ? 'Sending...' : 'Send'}
+                  </button>
                 </div>
               </div>
             </div>
           </form>
         </div>
       </dialog>
+      {showToast && (
+        <div className="toast toast-end">
+          <div className="alert alert-success">
+            <span>Message sent successfully.</span>
+          </div>
+        </div>
+      )}
     </>
   );
 };
