@@ -1,69 +1,103 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import pic1 from '../../public/images/clear.jpg';
-import { motion } from 'framer-motion';
 import useAboutMe from '../hooks/useAboutMe';
 import imageLoader from '../utils/imageLoader';
 import { FaCheckCircle } from "react-icons/fa";
 
-
 const About = () => {
   const { data: aboutMe, error, isLoading } = useAboutMe();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const handleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const renderDescription = () => {
+    if (!aboutMe?.description) return null;
+
+    const paragraphs = aboutMe.description.split('\n').map((paragraph, index) => (
+      <p key={index} className="mb-4">{paragraph}</p>
+    ));
+
+    if (isExpanded) {
+      return (
+        <>
+          {paragraphs}
+          <button onClick={handleReadMore} className="btn btn-link">Read Less</button>
+        </>
+      );
+    }
+
+    const shortDescription = paragraphs.slice(0, 2);
+
     return (
-      <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
+      <>
+        {shortDescription}
+        <button onClick={handleReadMore} className="btn btn-link">Read More</button>
+      </>
+    );
+  };
+
+  useEffect(() => {
+    if (contentRef.current && imageRef.current) {
+      imageRef.current.style.height = `${contentRef.current.clientHeight}px`;
+    }
+  }, [aboutMe, isExpanded]);
+
+  return (
+    <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
       <h1 className="text-5xl font-bold mb-10 text-left">About Me</h1>
       <div className="hero-content flex-col lg:flex-row items-center">
         <div className="hidden lg:block flex-shrink-0 lg:mr-10 lg:mb-32">
-          {aboutMe?.image && aboutMe.image.data && (
-            <Image
-              loader={imageLoader}
-              src={aboutMe.image.data.attributes.formats.large.url}
-              alt="About Me Image"
-              width={400}
-              height={400}
-              className="rounded-lg shadow-2xl"
-            />
-          )}
+          <div ref={imageRef} className="relative w-72">
+            {aboutMe?.image && aboutMe.image.data && (
+              <Image
+                loader={imageLoader}
+                src={aboutMe.image.data.attributes.formats.large.url}
+                alt="About Me Image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg shadow-2xl"
+              />
+            )}
+          </div>
         </div>
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2" ref={contentRef}>
           <div className="card bg-base-300 shadow-md p-5 mb-6">
-
-          <div className="flex flex-col w-full border-opacity-50">
-          <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
-            <p className="py-2">{aboutMe?.description}</p>
-            </div>
-            <div className="divider"></div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">          
-              <div>
-                <p className="font-bold">Name:</p>
-                <p>{aboutMe?.name}</p>
+            <div className="flex flex-col w-full border-opacity-50">
+              <div className="grid h-auto card bg-base-300 rounded-box place-items-center">
+                {renderDescription()}
               </div>
+              <div className="divider"></div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">          
+                <div>
+                  <p className="font-bold">Name:</p>
+                  <p>{aboutMe?.name}</p>
+                </div>
 
-              <div>
-                <p className="font-bold">Address:</p>
-                <p>{aboutMe?.address}</p>
+                <div>
+                  <p className="font-bold">Address:</p>
+                  <p>{aboutMe?.address}</p>
+                </div>
+
+                <div>
+                  <p className="font-bold">Zip code:</p>
+                  <p>{aboutMe?.zipCode}</p>
+                </div>
+
+                <div>
+                  <p className="font-bold">Phone:</p>
+                  <p>{aboutMe?.phone}</p>
+                </div>
+
+                <div>
+                  <p className="font-bold">Email:</p>
+                  <p>{aboutMe?.email}</p>
+                </div>
               </div>
-
-              <div>
-                <p className="font-bold">Zip code:</p>
-                <p>{aboutMe?.zipCode}</p>
-              </div>
-
-              <div>
-                <p className="font-bold">Phone:</p>
-                <p>{aboutMe?.phone}</p>
-              </div>
-
-              <div>
-                <p className="font-bold">Email:</p>
-                <p>{aboutMe?.email}</p>
-              </div>
-
-
-
             </div>
           </div>
           
@@ -88,7 +122,7 @@ const About = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
