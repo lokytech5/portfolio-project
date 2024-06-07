@@ -20,6 +20,8 @@ const Resume = () => {
             <li><button className={`btn btn-ghost ${activeTab === 'education' ? 'text-primary' : ''}`} onClick={() => setActiveTab('education')}>Education</button></li>
             <li><button className={`btn btn-ghost ${activeTab === 'experience' ? 'text-primary' : ''}`} onClick={() => setActiveTab('experience')}>Experience</button></li>
             <li><button className={`btn btn-ghost ${activeTab === 'skills' ? 'text-primary' : ''}`} onClick={() => setActiveTab('skills')}>Skills</button></li>
+            <li><button className={`btn btn-ghost ${activeTab === 'framework' ? 'text-primary' : ''}`} onClick={() => setActiveTab('framework')}>Framework</button></li>
+            <li><button className={`btn btn-ghost ${activeTab === 'cloud' ? 'text-primary' : ''}`} onClick={() => setActiveTab('cloud')}>Cloud Technology</button></li>
           </ul>
         </div>
         <div className="lg:w-3/4 mt-8 lg:mt-0 lg:ml-10">
