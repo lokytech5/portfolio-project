@@ -8,11 +8,35 @@ import { FaCheckCircle } from "react-icons/fa";
 const About = () => {
   const { data: aboutMe, error, isLoading } = useAboutMe();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   const handleReadMore = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleDownload = async (url: string) => {
+    setIsDownloading(true);
+    setShowToast(false);
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const downloadUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = 'CV.pdf'; // You can change the file name as needed
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+    } catch (error) {
+      console.error('Download failed:', error);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   const renderDescription = () => {
@@ -112,15 +136,33 @@ const About = () => {
           </div>
           <div className="mt-6">
             {aboutMe?.cvUrl ? (
-              <Link href={aboutMe.cvUrl}>
-                <button className="btn btn-primary">Download CV</button>
-              </Link>
+              <>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleDownload(aboutMe.cvUrl)}
+                  disabled={isDownloading}
+                >
+                  {isDownloading ? 'Downloading...' : 'Download CV'}
+                </button>
+                {isDownloading && (
+                  <div className="mt-2">
+                    <span className="loading loading-dots loading-md"> Download in progress...</span>
+                  </div>
+                )}
+              </>
             ) : (
               <button className="btn btn-primary" disabled>No CV available</button>
             )}
           </div>
         </div>
       </div>
+      {showToast && (
+        <div className="toast toast-end">
+          <div className="alert alert-success">
+            <span>Download completed successfully.</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

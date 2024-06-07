@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import pic2 from '../../public/images/simple.jpg';
 
+
 const Hero = () => {
     return (
 
