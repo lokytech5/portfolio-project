@@ -52,7 +52,7 @@ const Projects = () => {
             <div className="flex flex-wrap gap-2">
               {project.attributes.techStack && project.attributes.techStack.length > 0 ? (
                 project.attributes.techStack.map((tech, techIndex) => (
-                  <span key={techIndex} className="badge badge-outline">{tech}</span>
+                  <span key={techIndex} className="badge badge-secondary badge-outline">{tech}</span>
                 ))
               ) : (
                 <span>No tech stack available</span>

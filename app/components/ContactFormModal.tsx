@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 const ContactFormModal = () => {
-    const openModal = () => {
-        const modal = document.getElementById('contact_modal') as HTMLDialogElement;
-        if (modal) {
-          modal.showModal();
-        }
-      };
+  const openModal = () => {
+    const modal = document.getElementById('contact_modal') as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
+  };
 
   return (
-     <>
+    <>
       <button className="btn" onClick={openModal}>Contact</button>
       <dialog id="contact_modal" className="modal">
         <div className="modal-box">
@@ -17,7 +17,7 @@ const ContactFormModal = () => {
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             <h3 className="font-bold text-lg">Contact Us</h3>
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mt-4">
-              <form className="card-body">
+              <div className="card-body">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -33,13 +33,13 @@ const ContactFormModal = () => {
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Send</button>
                 </div>
-              </form>
+              </div>
             </div>
           </form>
         </div>
       </dialog>
     </>
-  )
-}
+  );
+};
 
-export default ContactFormModal
+export default ContactFormModal;
