@@ -12,9 +12,9 @@ const fetchResumeData = async (): Promise<ResumeData> => {
       experiences
     ] = await Promise.all([
       apiClient.get('/programming-languages'),
-      apiClient.get('/frameworks'),
+      apiClient.get('/frameworks?populate=image'),      
       apiClient.get('/databases'),
-      apiClient.get('/cloud-technologies'),
+      apiClient.get('/cloud-technologies?populate=image'),
       apiClient.get('/educations'),
       apiClient.get('/experiences')
     ]);

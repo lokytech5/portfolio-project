@@ -113,7 +113,15 @@ export interface DatabaseAttributes extends GenericAttributes {
 }
 
 export interface CloudTechnologyAttributes extends GenericAttributes {
-  percentage: number;
+  image: {
+    data: ImageData;
+  };
+}
+
+export interface FrameworkAttributes extends GenericAttributes {
+  image: {
+    data: ImageData;
+  };
 }
 
 export interface EducationAttributes {
@@ -135,7 +143,7 @@ export interface GenericData<T> {
 
 // Collections
 export type ProgrammingLanguage = GenericData<ProgrammingLanguageAttributes>;
-export type Framework = GenericData<GenericAttributes>;
+export type Framework = GenericData<FrameworkAttributes>;
 export type Database = GenericData<DatabaseAttributes>;
 export type CloudTechnology = GenericData<CloudTechnologyAttributes>;
 export type Education = GenericData<EducationAttributes>;
