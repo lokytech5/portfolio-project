@@ -93,3 +93,70 @@ export interface ContactMessage {
 export interface ContactMessageResponse {
   data: ContactMessage[];
 }
+
+// General Data Structure
+export interface GenericAttributes {
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+
+// Specific Structures
+export interface ProgrammingLanguageAttributes extends GenericAttributes {
+  percentage: number;
+}
+
+export interface DatabaseAttributes extends GenericAttributes {
+  percentage: number;
+}
+
+export interface CloudTechnologyAttributes extends GenericAttributes {
+  percentage: number;
+}
+
+export interface EducationAttributes {
+  year: number;
+  title: string;
+  description: string;
+}
+
+export interface ExperienceAttributes {
+  jobTitle: string;
+  details: string;
+}
+
+// Generic Data Interface
+export interface GenericData<T> {
+  id: number;
+  attributes: T;
+}
+
+// Collections
+export type ProgrammingLanguage = GenericData<ProgrammingLanguageAttributes>;
+export type Framework = GenericData<GenericAttributes>;
+export type Database = GenericData<DatabaseAttributes>;
+export type CloudTechnology = GenericData<CloudTechnologyAttributes>;
+export type Education = GenericData<EducationAttributes>;
+export type Experience = GenericData<ExperienceAttributes>;
+
+// Combined Resume Data
+export interface ResumeData {
+  programmingLanguages: ProgrammingLanguage[];
+  frameworks: Framework[];
+  databases: Database[];
+  cloudTechnologies: CloudTechnology[];
+  educations: Education[];
+  experiences: Experience[];
+}
+
+// API Responses
+export interface ResumeResponse {
+  programmingLanguages: { data: ProgrammingLanguage[] };
+  frameworks: { data: Framework[] };
+  databases: { data: Database[] };
+  cloudTechnologies: { data: CloudTechnology[] };
+  educations: { data: Education[] };
+  experiences: { data: Experience[] };
+}
