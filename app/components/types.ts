@@ -76,3 +76,20 @@ export interface AboutMe {
 export interface AboutMeResponse {
   data: AboutMe[];
 }
+
+export interface ContactMessageAttributes {
+  email: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface ContactMessage {
+  id: number;
+  attributes: ContactMessageAttributes;
+}
+
+export interface ContactMessageResponse {
+  data: ContactMessage[];
+}
