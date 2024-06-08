@@ -1,17 +1,18 @@
 import React from 'react'
 import { FaHashnode } from "react-icons/fa6";
 import { motion } from 'framer-motion';
+import { smoothScrollTo } from '../utils/smoothScroll';
+import ContactFormModal from './ContactFormModal';
 
 const Footer = () => {
   return (
     
     <footer className="footer footer-center p-10 bg-base-300 text-base-content rounded">
     <nav className="grid grid-flow-col gap-4">
-      <a className="link link-hover">Home</a>
-      <a className="link link-hover">Resume</a>
-      <a className="link link-hover">About</a>
-      <a className="link link-hover">Project</a>
-      <a className="link link-hover">Contact</a>
+      <a className="cursor-pointer"  onClick={() => smoothScrollTo('home')}>Home</a>
+      <a className="cursor-pointer"  onClick={() => smoothScrollTo('resume')}>Resume</a>
+      <a className="cursor-pointer" onClick={() => smoothScrollTo('about')}>About</a>
+      <a className="cursor-pointer" onClick={() => smoothScrollTo('projects')}>Project</a>
     </nav>
     <nav>
       <div className="grid grid-flow-col gap-4">

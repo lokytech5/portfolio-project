@@ -3,7 +3,11 @@ import useContactMessages from '../hooks/useContactMessages';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorAlert from './ErrorAlert';
 
-const ContactFormModal = () => {
+interface ContactFormModalProps {
+  variant?: 'hero' | 'navbar';
+}
+
+const ContactFormModal: React.FC<ContactFormModalProps> = ({ variant }) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const { createMessage, isLoading, isError, isSuccess } = useContactMessages();
@@ -34,9 +38,14 @@ const ContactFormModal = () => {
     );
   };
 
+  const buttonClass =
+    variant === 'hero'
+      ? 'btn btn-primary text-lg py-3 px-6 transition-transform'
+      : 'btn';
+
   return (
-    <>
-      <button className="btn" onClick={openModal}>Contact</button>
+<>
+      <button className={buttonClass} onClick={openModal}>Get in touch</button>
       <dialog id="contact_modal" className={`modal ${isModalOpen ? 'modal-open' : ''}`}>
         <div className="modal-box">
           <form onSubmit={handleSubmit} className="relative">

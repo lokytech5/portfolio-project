@@ -86,14 +86,20 @@ const Resume = () => {
                           {resumeData.frameworks?.map((framework) => (
                               <div key={framework.id} className="card w-full bg-base-100 shadow-xl">
                                   <figure className="w-full">
-                                      <Image
-                                          loader={imageLoader}
-                                          src={framework.attributes.image.data.attributes.formats.large.url}
-                                          alt={framework.attributes.name}
-                                          width={400}
-                                          height={200}
-                                          className="object-cover w-full"
-                                      />
+                                  {framework.attributes.image?.data?.attributes?.formats?.medium?.url ? (
+            <Image
+              loader={imageLoader}
+              src={framework.attributes.image.data.attributes.formats.medium.url}
+              alt={framework.attributes.name}
+              width={400}
+              height={200}
+              className="object-cover w-full"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-48 bg-gray-200">
+              <span>No image available</span>
+            </div>
+          )}
                                   </figure>
                                   <div className="card-body text-left">
                                       <h2 className="card-title">{framework.attributes.name}</h2>
@@ -119,14 +125,20 @@ const Resume = () => {
                           {resumeData.cloudTechnologies?.map((cloud) => (
                               <div key={cloud.id} className="card w-full bg-base-100 shadow-xl">
                                   <figure className="w-full">
-                                      <Image
-                                          loader={imageLoader}
-                                          src={cloud.attributes.image.data.attributes.formats.large.url}
-                                          alt={cloud.attributes.name}
-                                          width={400}
-                                          height={200}
-                                          className="object-cover w-full"
-                                      />
+                                  {cloud.attributes.image?.data?.attributes?.formats?.medium?.url ? (
+            <Image
+              loader={imageLoader}
+              src={cloud.attributes.image.data.attributes.formats.medium.url}
+              alt={cloud.attributes.name}
+              width={400}
+              height={200}
+              className="object-cover w-full"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-48 bg-gray-200">
+              <span>No image available</span>
+            </div>
+          )}
                                   </figure>
                                   <div className="card-body text-left">
                                       <h2 className="card-title">{cloud.attributes.name}</h2>

@@ -24,7 +24,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <ContactFormModal />
+        <ContactFormModal variant="navbar" />
         </div>
       </div>
     </div>

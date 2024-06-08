@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import pic2 from '../../public/images/simple.jpg';
+import ContactFormModal from './ContactFormModal';
 
 
 const Hero = () => {
@@ -59,22 +60,15 @@ const Hero = () => {
             Backend Engineer and Cloud Administrator with a passion for developing scalable and efficient backend solutions.
           </p>
           <div className="flex justify-center lg:justify-start space-x-4">
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary text-lg py-3 px-6 transition-transform"
-              >
-                Get in touch
-              </motion.button>
-            </Link>
+          <ContactFormModal variant="hero" />
+
             <Link href="/resume">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-gray-100 transition-transform"
               >
-                Download CV
+                Read My Blog
               </motion.button>
             </Link>
           </div>
