@@ -62,11 +62,11 @@ const Hero = () => {
           <div className="flex justify-center lg:justify-start space-x-4">
           <ContactFormModal variant="hero" />
 
-            <Link href="/resume">
+            <Link href="/blog">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-gray-100 transition-transform"
+                className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-accent transition-transform"
               >
                 Read My Blog
               </motion.button>
