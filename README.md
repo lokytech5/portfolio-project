@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lokosman Portfolio
+![HomePage](public/images/Screenshot1.png)
+![ResumePage](public/images/Screenshot4.png)
+![ProjectPage](public/images/Screenshot2.png)
+![StrapiPage](public/images/Screenshot3.png)
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This is my personal portfolio project showcasing my skills, projects, and experiences as a Backend Engineer and Cloud Administrator. The portfolio is built using Next.js and TypeScript, with Strapi serving as the headless CMS. Additionally, it integrates my Hashnode blog using the Blog Starter Kit for seamless blog management and display.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Responsive Design**: The portfolio is fully responsive and works on all device sizes.
+- **Strapi CMS**: Manage content such as projects, about me, resume details, and contact messages via Strapi.
+- **Hashnode Blog Integration**: Display blog posts from my Hashnode blog directly within the portfolio.
+- **Smooth Scrolling**: Smooth scrolling functionality for navigation links.
+- **Contact Form**: A modal-based contact form for users to reach out to me.
+- **Dynamic Resume**: Tabs to navigate through different sections of my resume including education, experience, programming languages, frameworks, databases, and cloud technologies.
+- **Animation**: Subtle animations using Framer Motion.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
+ - Clone the repository
+ - Navigate to the project directory
+ - Install the dependencies with `npm install`
+ - run the application using `npm run dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project Structure
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Integrating Hashnode Blog
 
-## Deploy on Vercel
+- **Fork the Hashnode Blog Starter Kit repository**: Start by forking the [Hashnode Blog Starter Kit](https://github.com/Hashnode/Blog-Starter-Kit) repository.
+- **Deploy it on Vercel**: Create a new project on Vercel and connect your forked repository.
+- **Update the environment variables**: In your portfolio project's `next.config.js`, update the environment variables to point to your Vercel deployment URL.
+- **Enable headless mode in Hashnode**: Go to your Hashnode blog settings, enable headless mode, and provide the Vercel deployment URL.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For any inquiries, please reach out to me via the contact form on the portfolio or through my email: [lokosman5@gmail.com](mailto:lokosman5@gmail.com).
+
+## License
+
+This project is licensed under the MIT License.
+
