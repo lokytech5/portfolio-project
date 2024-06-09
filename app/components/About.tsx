@@ -21,11 +21,8 @@ const About = () => {
     setIsDownloading(true);
     setShowToast(false);
     try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const downloadUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = downloadUrl;
+      a.href = url;
       a.download = 'CV.pdf'; // You can change the file name as needed
       document.body.appendChild(a);
       a.click();
