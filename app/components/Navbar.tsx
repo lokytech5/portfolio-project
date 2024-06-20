@@ -20,7 +20,7 @@ const Navbar = () => {
           <li><a className="cursor-pointer" onClick={() => smoothScrollTo('resume')}>Resume</a></li>
           <li><a className="cursor-pointer" onClick={() => smoothScrollTo('about')}>About</a></li>
           <li><a className="cursor-pointer" onClick={() => smoothScrollTo('projects')}>Projects</a></li>
-          <li><a href="/blog">Blog</a></li>
+          <li><a href="https://lokos-write.hashnode.dev/">Blog</a></li>
           </ul>
         </div>
         <div className="navbar-end">

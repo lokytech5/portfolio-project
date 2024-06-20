@@ -62,7 +62,7 @@ const Hero = () => {
           <div className="flex justify-center lg:justify-start space-x-4">
           <ContactFormModal variant="hero" />
 
-            <Link href="/blog">
+            <Link href="https://lokos-write.hashnode.dev/">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
