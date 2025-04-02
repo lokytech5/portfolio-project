@@ -29,4 +29,6 @@ const AboutSkeleton = () => (
       </div>
     </div>
   );
+
+export default AboutSkeleton;
   

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import apiClient from '../utils/apiClient';
 import { ResumeData } from '../components/types';
+import { useBackendStatus } from '../BackendStatusContext';
 
 const fetchResumeData = async (): Promise<ResumeData> => {
     const [
@@ -30,9 +31,11 @@ const fetchResumeData = async (): Promise<ResumeData> => {
   };
   
   const useResumeData = () => {
+    const { status: backendStatus } = useBackendStatus();
     return useQuery<ResumeData, Error>({
       queryKey: ['resumeData'],
       queryFn: fetchResumeData,
+      enabled: backendStatus === "ready",
     });
   };
   

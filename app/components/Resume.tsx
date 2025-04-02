@@ -6,6 +6,7 @@ import LoadingSpinner from './LoadingSpinner';
 import ErrorAlert from './ErrorAlert';
 import imageLoader from '../utils/imageLoader';
 import Image from 'next/image';
+import ResumeSkeleton from './ResumeSkeleton';
 
 interface CustomCSSProperties extends CSSProperties {
     '--value'?: string;
@@ -17,7 +18,7 @@ const Resume = () => {
     const [activeTab, setActiveTab] = useState('education');
     const { data: resumeData, isLoading, isError } = useResumeData();
 
-    if(isLoading) return <LoadingSpinner/>
+    if(isLoading) return <ResumeSkeleton/>
     if(isError) return <ErrorAlert />
   
     return (

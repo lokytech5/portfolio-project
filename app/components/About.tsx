@@ -4,7 +4,7 @@ import Link from 'next/link';
 import useAboutMe from '../hooks/useAboutMe';
 import imageLoader from '../utils/imageLoader';
 import { FaCheckCircle } from "react-icons/fa";
-import SkeletonLoader from './SkeletonLoader';
+import AboutSkeleton from './AboutSkeleton';
 
 const About = () => {
   const { data: aboutMe, error, isLoading } = useAboutMe();
@@ -72,7 +72,7 @@ const About = () => {
  if (isLoading || !aboutMe) {
   return (
     <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20 flex justify-center items-center min-h-[500px]">
-      <SkeletonLoader />
+      <AboutSkeleton/>
     </div>
   );
 }

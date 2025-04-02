@@ -6,11 +6,12 @@ import LoadingSpinner from './LoadingSpinner';
 import ErrorAlert from './ErrorAlert';
 import useProjects from '../hooks/useProjects';
 import imageLoader from '../utils/imageLoader';
+import ProjectsSkeleton from './ProjectsSkeleton';
 
 const Projects = () => {
   const { data: projects, error, isLoading } = useProjects();
 
-  if(isLoading) return <LoadingSpinner/>
+  if(isLoading) return <ProjectsSkeleton/>;
   if(error) return <ErrorAlert />
   
   return (
