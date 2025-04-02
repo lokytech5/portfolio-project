@@ -69,14 +69,13 @@ const About = () => {
     }
   }, [aboutMe, isExpanded]);
 
-  if (isLoading || !aboutMe) {
-    return (
-      <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
-        <h1 className="text-5xl font-bold mb-10 text-left">About Me</h1>
-        <SkeletonLoader />
-      </div>
-    );
-  }
+ if (isLoading || !aboutMe) {
+  return (
+    <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20 flex justify-center items-center min-h-[500px]">
+      <SkeletonLoader />
+    </div>
+  );
+}
 
   return (
     <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">

@@ -11,7 +11,6 @@ const fetchAboutMe = async () => {
 
   const useAboutMe = () => {
     const { status: backendStatus } = useBackendStatus();
-    
     return useQuery<AboutMeAttributes, Error>({
       queryKey: ['about-me'],
       queryFn: fetchAboutMe,
