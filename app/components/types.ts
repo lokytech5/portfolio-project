@@ -168,3 +168,9 @@ export interface ResumeResponse {
   educations: { data: Education[] };
   experiences: { data: Experience[] };
 }
+
+export interface HealthStatus {
+  status: "ok";
+  uptime: string;
+  timestamp: string;
+}
