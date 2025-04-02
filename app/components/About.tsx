@@ -4,6 +4,7 @@ import Link from 'next/link';
 import useAboutMe from '../hooks/useAboutMe';
 import imageLoader from '../utils/imageLoader';
 import { FaCheckCircle } from "react-icons/fa";
+import SkeletonLoader from './SkeletonLoader';
 
 const About = () => {
   const { data: aboutMe, error, isLoading } = useAboutMe();
@@ -67,6 +68,15 @@ const About = () => {
       imageRef.current.style.height = `${contentRef.current.clientHeight}px`;
     }
   }, [aboutMe, isExpanded]);
+
+  if (isLoading || !aboutMe) {
+    return (
+      <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
+        <h1 className="text-5xl font-bold mb-10 text-left">About Me</h1>
+        <SkeletonLoader />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-base-200 p-10 rounded-lg shadow-lg pt-20">
