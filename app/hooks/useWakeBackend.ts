@@ -1,27 +1,24 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import apiClient from "../utils/apiClient";
 import { HealthStatus } from "../components/types";
-
-type BackendStatus = "idle" | "starting" | "ready" | "error";
+import { useBackendStatus } from "../BackendStatusContext";
 
 const useWakeBackend = () => {
-  const [status, setStatus] = useState<BackendStatus>("idle");
-  const [uptime, setUptime] = useState<string | null>(null);
+  const { status, setStatus, uptime, setUptime } = useBackendStatus();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startBackend = async () => {
     setStatus("starting");
 
     try {
-      await fetch("https://your-api-gateway-url.amazonaws.com/prod/start", {
-        method: "POST",
-      });
+      // Call your backend wake-up endpoint (if needed)
+      // await fetch("https://your-api-gateway.amazonaws.com/prod/start", { method: "POST" });
 
       for (let i = 0; i < 10; i++) {
         const res = await apiClient.get<HealthStatus>("/health");
         if (res.data.status === "ok") {
           setStatus("ready");
-          setUptime(res.data.uptime); // Initial uptime from backend
+          setUptime(res.data.uptime);
           startLiveUptime(res.data.uptime);
           return;
         }
