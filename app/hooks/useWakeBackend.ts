@@ -4,31 +4,50 @@ import { HealthStatus } from "../components/types";
 import { useBackendStatus } from "../BackendStatusContext";
 
 const useWakeBackend = () => {
-  const { status, setStatus, uptime, setUptime } = useBackendStatus();
+  const {
+    status, setStatus,
+    uptime, setUptime,
+    manuallyStarted, setManuallyStarted
+  } = useBackendStatus();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startBackend = async () => {
     setStatus("starting");
+    setManuallyStarted(true);
+    sessionStorage.setItem("manuallyStarted", "true");
 
     try {
-      // Call your backend wake-up endpoint (if needed)
-      // await fetch("https://your-api-gateway.amazonaws.com/prod/start", { method: "POST" });
+      await fetch("https://bh00y5ylm5.execute-api.us-east-1.amazonaws.com/prod/start", {
+        method: "POST",
+      });
 
-      for (let i = 0; i < 10; i++) {
-        const res = await apiClient.get<HealthStatus>("/health");
-        if (res.data.status === "ok") {
-          setStatus("ready");
-          setUptime(res.data.uptime);
-          startLiveUptime(res.data.uptime);
-          return;
+      const maxAttempts = 12;
+      const delay = 5000;
+
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          const res = await apiClient.get<HealthStatus>("/health");
+          if (res.data.status === "ok") {
+            setStatus("ready");
+            setUptime(res.data.uptime);
+            startLiveUptime(res.data.uptime);
+            localStorage.setItem("backendStatus", "ready");
+            return;
+          }
+        } catch {
+          console.log(`⏳ Attempt ${attempt}: backend not ready`);
         }
-        await new Promise((res) => setTimeout(res, 5000));
+
+        await new Promise((res) => setTimeout(res, delay));
       }
 
       setStatus("error");
+      localStorage.removeItem("backendStatus");
+
     } catch (err) {
-      console.error("Backend wake failed", err);
+      console.error("❌ Backend wake failed:", err);
       setStatus("error");
+      localStorage.removeItem("backendStatus");
     }
   };
 
@@ -46,6 +65,35 @@ const useWakeBackend = () => {
   };
 
   useEffect(() => {
+    const manually = sessionStorage.getItem("manuallyStarted") === "true";
+    setManuallyStarted(manually);
+
+    if (!manually) {
+      const checkIfBackendIsRunning = async () => {
+        const wasAlreadyMarkedReady = localStorage.getItem("backendStatus") === "ready";
+
+        try {
+          const res = await apiClient.get<HealthStatus>("/health");
+          if (res.data.status === "ok") {
+            setStatus("ready");
+            setUptime(res.data.uptime);
+            startLiveUptime(res.data.uptime);
+            localStorage.setItem("backendStatus", "ready");
+          } else if (wasAlreadyMarkedReady) {
+            localStorage.removeItem("backendStatus");
+            setStatus("idle");
+          }
+        } catch {
+          if (wasAlreadyMarkedReady) {
+            localStorage.removeItem("backendStatus");
+          }
+          setStatus("idle");
+        }
+      };
+
+      checkIfBackendIsRunning();
+    }
+
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };

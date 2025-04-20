@@ -10,6 +10,8 @@ interface BackendContextType {
   setStatus: (s: BackendStatus) => void;
   uptime: string | null;
   setUptime: (u: string | null) => void;
+  manuallyStarted: boolean;
+  setManuallyStarted: (m: boolean) => void;
 }
 
 const BackendStatusContext = createContext<BackendContextType | undefined>(undefined);
@@ -17,9 +19,13 @@ const BackendStatusContext = createContext<BackendContextType | undefined>(undef
 export const BackendStatusProvider = ({ children }: { children: React.ReactNode }) => {
   const [status, setStatus] = useState<BackendStatus>("idle");
   const [uptime, setUptime] = useState<string | null>(null);
+  const [manuallyStarted, setManuallyStarted] = useState(false);
 
   return (
-    <BackendStatusContext.Provider value={{ status, setStatus, uptime, setUptime }}>
+    <BackendStatusContext.Provider value={{
+      status, setStatus, uptime, setUptime,
+      manuallyStarted, setManuallyStarted
+    }}>
       {children}
     </BackendStatusContext.Provider>
   );

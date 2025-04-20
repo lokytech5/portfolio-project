@@ -38,6 +38,7 @@ const useResumeData = () => {
     queryFn: fetchResumeData,
     enabled: backendStatus === "ready",
     refetchOnWindowFocus: false,
+
   });
 };
 
