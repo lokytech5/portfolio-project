@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@strapi/provider-upload-aws-s3": "^5.12.5",
     "@tanstack/react-query": "4.28",
     "@types/node": "20.12.12",
     "@types/react": "18.3.2",
