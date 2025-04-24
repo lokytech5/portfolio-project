@@ -17,7 +17,7 @@ const useWakeBackend = () => {
     sessionStorage.setItem("manuallyStarted", "true");
 
     try {
-      await fetch("https://bh00y5ylm5.execute-api.us-east-1.amazonaws.com/prod/start", {
+      await fetch(process.env.NEXT_PUBLIC_AWS_API_GATEWAY_URL!, {
         method: "POST",
       });
 
