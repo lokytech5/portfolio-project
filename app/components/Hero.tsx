@@ -1,9 +1,9 @@
+import React from 'react'
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import pic2 from '../../public/images/simple.jpg';
 import ContactFormModal from './ContactFormModal';
-import WakeBackendButton from '../components/WakeBackendButton'
 
 
 const Hero = () => {
@@ -59,23 +59,19 @@ const Hero = () => {
           <p className="text-lg mb-6">
             Backend Engineer and Cloud Administrator with a passion for developing scalable and efficient backend solutions.
           </p>
-          <div className="flex flex-col items-center lg:items-start space-y-4">
-  <div className="flex justify-center lg:justify-start space-x-4">
-    <ContactFormModal variant="hero" />
-    <Link href="https://lokos-write.hashnode.dev/">
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-accent transition-transform"
-      >
-        Read My Blog
-      </motion.button>
-    </Link>
-  </div>
+          <div className="flex justify-center lg:justify-start space-x-4">
+          <ContactFormModal variant="hero" />
 
-  {/* 👇 Centered Wake Backend button under the first two */}
-  <WakeBackendButton />
-</div>
+            <Link href="https://lokos-write.hashnode.dev/">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn bg-white text-black border border-black text-lg py-3 px-6 hover:bg-accent transition-transform"
+              >
+                Read My Blog
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
